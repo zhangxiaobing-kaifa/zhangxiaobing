@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Server">
+	<resultMap type="ServerInfo" id="Server-Result">
+		<result property="code" column="code" javaType="Integer" />		
+		<result property="gameId" column="game_id" javaType="Integer" />		
+		<result property="name" column="server_name" javaType="String" />		
+	</resultMap>	
+	<select id="queryById" parameterType="Integer" resultMap="Server-Result">
+		select * from zhangxiaobing_server_tb where code=#{id}  
+    </select>
+	<select id="queryListByGameId" parameterType="Integer" resultMap="Server-Result">
+		select * from zhangxiaobing_server_tb
+		where game_id=#{game_id}
+    </select>    
+    
+    <update id="updateById" parameterType="java.util.HashMap">
+      update zhangxiaobing_server_tb set server_name=#{serverName} where code=#{code}
+    </update>
+</mapper> 
